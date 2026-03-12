@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pesan Korban Raditya</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:black;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+textarea{
+width:300px;
+height:100px;
+border-radius:10px;
+padding:10px;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:8px;
+background:red;
+color:white;
+cursor:pointer;
+}
+
+.pesan{
+background:#111;
+padding:10px;
+margin:10px;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>📩 Pesan Dari Korban Raditya</h1>
+
+<textarea id="isiPesan" placeholder="Tulis curhatan kamu..."></textarea>
+
+<br>
+
+<button onclick="kirimPesan()">Kirim Pesan</button>
+
+<button onclick="kembali()">Kembali</button>
+
+<h2>Daftar Pesan</h2>
+
+<div id="listPesan"></div>
+
+<script>
+
+let pesan = JSON.parse(localStorage.getItem("pesanRaditya")) || []
+
+function tampilkan(){
+
+let container=document.getElementById("listPesan")
+container.innerHTML=""
+
+pesan.forEach(p=>{
+container.innerHTML+=`
+<div class="pesan">${p}</div>
+`
+})
+
+}
+
+function kirimPesan(){
+
+let isi=document.getElementById("isiPesan").value
+
+if(isi==="") return
+
+pesan.push(isi)
+
+localStorage.setItem("pesanRaditya",JSON.stringify(pesan))
+
+document.getElementById("isiPesan").value=""
+
+tampilkan()
+
+}
+
+function kembali(){
+window.location="index.html"
+}
+
+tampilkan()
+
+</script>
+
+</body>
+</html>

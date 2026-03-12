@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Rating Kebajingan Raditya</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#000,#2b0000,#000);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+h1{
+font-size:50px;
+margin-top:40px;
+animation:shake 2s infinite;
+}
+
+.card{
+width:350px;
+margin:auto;
+margin-top:40px;
+padding:30px;
+border-radius:20px;
+background:rgba(255,0,0,0.1);
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px red;
+}
+
+.rating{
+font-size:60px;
+color:red;
+font-weight:bold;
+animation:pulse 1s infinite;
+}
+
+.bar{
+width:100%;
+height:25px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.bar-fill{
+height:100%;
+width:99%;
+background:linear-gradient(90deg,red,darkred,black);
+animation:move 3s infinite;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:10px;
+font-size:16px;
+background:red;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:darkred;
+}
+
+.insult{
+position:absolute;
+font-weight:bold;
+color:#ff4d4d;
+animation:float 10s linear infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-5px);}
+50%{transform:translateX(5px);}
+75%{transform:translateX(-5px);}
+100%{transform:translateX(0);}
+}
+
+@keyframes move{
+0%{background-position:0%;}
+100%{background-position:200%;}
+}
+
+@keyframes float{
+from{transform:translateY(100vh);}
+to{transform:translateY(-100vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>⚠️ DETEKTOR KEBAJINGAN ⚠️</h1>
+
+<div class="card">
+
+<h2>Profil Target</h2>
+
+<p><b>Nama:</b> RADITYA</p>
+<p><b>Status:</b> Player Level Dewa 😈</p>
+
+<div class="rating">-99 / -100</div>
+
+<div class="bar">
+<div class="bar-fill"></div>
+</div>
+
+<button onclick="tambahKorban()">Tambah Korban</button>
+
+<br>
+
+<button onclick="bukaPesan()">📩 Pesan Dari Korban</button>
+
+<p id="korban">Jumlah Korban: 0</p>
+
+</div>
+
+<script>
+
+let korban = localStorage.getItem("korban") || 0
+document.getElementById("korban").innerText="Jumlah Korban: "+korban
+
+function tambahKorban(){
+
+korban++
+localStorage.setItem("korban",korban)
+
+document.getElementById("korban").innerText="Jumlah Korban: "+korban
+
+alert("Raditya naik level kebajingan 💀")
+
+}
+
+function bukaPesan(){
+window.location="pesan.html"
+}
+
+const kata=[
+"RADITYA BAJINGAN",
+"PLAYER MODE",
+"RED FLAG 🚩",
+"CEWE HATI²",
+"LEVEL SETAN",
+"WASPADA ⚠️"
+]
+
+function buatTeks(){
+
+const el=document.createElement("div")
+el.className="insult"
+
+el.innerText=kata[Math.floor(Math.random()*kata.length)]
+
+el.style.left=Math.random()*100+"vw"
+el.style.fontSize=(20+Math.random()*30)+"px"
+
+document.body.appendChild(el)
+
+setTimeout(()=>{
+el.remove()
+},10000)
+
+}
+
+setInterval(buatTeks,800)
+
+</script>
+
+</body>
+</html>
